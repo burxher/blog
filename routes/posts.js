@@ -5,39 +5,26 @@ const checkLogin = require('../middleware/check').checkLogin
 const PostModel = require('../models/posts')
 const CommentModel = require('../models/comments')
 const OvertimeModel = require('../models/overtime')
-const dateToStr = require('../tools/methods').dateToStr
+const overtimeFormat = require('../tools/overtimeFun').overtimeFormat
 
 // 文章页
 router.get('/', function (req, res, next) {
   const author = req.query.author
+  console.log(author)
+  const user = req.session.user ? req.session.user._id : null
+  console.log(user)
 
   Promise.all([
     PostModel.getPosts(author),
     // 加班时间
-    OvertimeModel.getOverTimeList()
+    OvertimeModel.getOverTimeList({author:user})
   ])
   .then( result => {
     // 博文
     const posts = result[0]
 
     // 加班时间
-    let timeList = result[1]
-    let totalHours = 0
-    let nowTime = dateToStr(new Date(),"m") // 当前时间
-    timeList.forEach(element => {
-      totalHours += (element.endTime - element.startTime)/1000/3600
-      element.date = dateToStr(element.startTime, 'date')
-      element.startTime = dateToStr(element.startTime, 'time')
-      element.endTime = dateToStr(element.endTime, 'time')
-    });
-    if(timeList.length>=5) {
-      timeList = timeList.splice(0,5)
-    }
-    let overtime = {
-      totalHours: (totalHours).toFixed(2),
-      now: nowTime,
-      timeList: timeList
-    }
+    let overtime = overtimeFormat(result[1])
 
     // 渲染
     res.render('posts', {

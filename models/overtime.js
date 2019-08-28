@@ -7,10 +7,11 @@ module.exports = {
   },
 
   // 获取指定（所有）日期的加班时间
-  getOverTimeList: function(day) {
+  getOverTimeList: function(params) {
     const query = {}
-    if (day) {
-      query.startTime = new Date(day)
+    if (params) {
+      // query.startTime = new Date(params.day)
+      query.author = params.author
     }
     return Overtime
       .find(query)

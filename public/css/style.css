@@ -91,15 +91,23 @@ a:hover{
   right: 20px;
   bottom: 20px;
   z-index: 200;
+  text-align: center;
 }
 .overtime .title {
+  color: #4fc08d;
   margin-top: 1rem;
   margin-bottom: 0;
   text-align: center;
 }
+.overtime .list ul {
+  padding: 0;
+}
 .overtime .list li{
   list-style-type: none;
 }
-.overtime .total-hours {
-  padding-left: 40px;
+.overtime .list everyday {
+  color: #4fc08d;
 }
+/* .overtime .total-hours {
+  
+} */

@@ -3,6 +3,7 @@ const router = express.Router()
 const OverTimeModel = require('../models/overtime')
 
 router.post('/', (req, res, next) => {
+  let author = req.session.user._id
   let startTime = req.fields.starttime
   let endTime = req.fields.endtime
   // 时间格式
@@ -21,6 +22,7 @@ router.post('/', (req, res, next) => {
     return res.redirect('/posts')
   }
   let overtime = {
+    author: author,
     startTime: new Date(startTime),
     endTime: new Date(endTime)
   }

@@ -17,8 +17,14 @@ module.exports = {
       case "date": // yyyy-mm-dd
         result = year + mid + mon + mid + da;
         break;
+      case "date_md":
+        result = mon + mid + da;
+        break;
       case "time": // HH:MM:SS
         result = h + timeMide + m + timeMide + s;
+        break;
+      case "time_hm": // HH:MM
+        result = h + timeMide + m;
         break;
       case "m": // yyyy-mm-dd HH:MM
         result = year + mid + mon + mid + da + ' ' + h + timeMide + m;

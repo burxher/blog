@@ -1,13 +1,20 @@
 <!-- 加班面板 -->
+<% if (user) { %>
 <div class="overtime">
   <div class="list">
+    <% if (overtime.timeList.length>0) { %>
     <p class="title">近5天加班情况</p>
+    <% } %>
     <ul>
       <% overtime.timeList.forEach(function(t) { %>
-        <li><span><%= t.date %> </span><span><%= t.startTime %></span> - <span><%= t.endTime %></span></li>
+        <li>
+          <span><%= t.date %> </span>
+          <span><%= t.startTime %></span> - <span><%= t.endTime %></span>
+          <span class="everyday">( <%= t.hours %>h )</span>
+        </li>
       <% }) %>
     </ul>
-    <p><span class="total-hours">本月你加班了 </span><%= overtime.totalHours %><span> 小时</span></p>
+    <p><span class="total-hours">本月你已加班了 </span><%= overtime.totalHours %><span> 小时</span></p>
   </div>
   <form method="post" class="ui form segment" action="/995">
     <div class="field required">
@@ -25,3 +32,4 @@
     <input type="submit" value="确定" class="ui button fluid">
   </form>
 </div>
+<% } %>
