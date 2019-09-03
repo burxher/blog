@@ -27,9 +27,7 @@ router.post('/', (req, res, next) => {
     endTime: new Date(endTime)
   }
   OverTimeModel.create(overtime)
-    .then( result => {
-      // 此 post 是插入 mongodb 后的值，包含 _id
-      let post = result.ops[0]
+    .then( () => {
       req.flash('success', '加班完成，你很棒哦！')
       res.redirect('/posts')
     })

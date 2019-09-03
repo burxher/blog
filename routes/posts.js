@@ -5,19 +5,22 @@ const checkLogin = require('../middleware/check').checkLogin
 const PostModel = require('../models/posts')
 const CommentModel = require('../models/comments')
 const OvertimeModel = require('../models/overtime')
+const methods = require('../tools/methods')
 const overtimeFormat = require('../tools/overtimeFun').overtimeFormat
 
 // 文章页
 router.get('/', function (req, res, next) {
   const author = req.query.author
-  console.log(author)
   const user = req.session.user ? req.session.user._id : null
-  console.log(user)
 
   Promise.all([
     PostModel.getPosts(author),
     // 加班时间
-    OvertimeModel.getOverTimeList({author:user})
+    OvertimeModel.getOverTimeList({
+      author: user,
+      // 当月第一天时间-现在
+      startDate: methods.dateToStr(new Date(), 'firstDate')
+    })
   ])
   .then( result => {
     // 博文
