@@ -10,7 +10,6 @@ module.exports = {
   getOverTimeList: function(params) {
     const query = {}
     if (params) {
-      // query.startTime = new Date(params.day)
       // 查询人
       query.author = params.author 
       // 查询时间

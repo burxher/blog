@@ -3,7 +3,7 @@
 <div class="overtime">
   <div class="list">
     <% if (overtime.timeList.length>0) { %>
-    <p class="title">近5天加班情况</p>
+    <p class="title">本月近5天加班情况</p>
     <ul>
       <% overtime.timeList.forEach(function(t) { %>
         <li>
@@ -14,7 +14,7 @@
       <% }) %>
     </ul>
     <% } %>
-    <p><span class="total-hours">本月你已加班了 </span><%= overtime.totalHours %><span> 小时</span></p>
+    <p><span class="total-hours">本月累计加班时长为 </span><%= overtime.totalHours %><span> 小时</span></p>
   </div>
   <form method="post" class="ui form segment" action="/995">
     <div class="field required">
