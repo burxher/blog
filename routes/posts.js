@@ -12,7 +12,6 @@ const overtimeFormat = require('../tools/overtimeFun').overtimeFormat
 router.get('/', function (req, res, next) {
   const author = req.query.author
   const user = req.session.user ? req.session.user._id : null
-
   Promise.all([
     PostModel.getPosts(author),
     // 加班时间
@@ -28,6 +27,7 @@ router.get('/', function (req, res, next) {
 
     // 加班时间
     let overtime = overtimeFormat(result[1])
+    console.log("加班时间：", overtime)
 
     // 渲染
     res.render('posts', {
@@ -76,6 +76,7 @@ router.post('/create', checkLogin, function (req, res, next) {
 // 发表文章页
 router.get('/create', checkLogin, function (req, res, next) {
   res.render('create')
+  next
 })
 
 // 文章详情页

@@ -1,10 +1,11 @@
+const path = require('path')
 module.exports = function (app) {
   app.get('/', function (req, res) {
     res.redirect('/posts')
   })
   // 加载网站图标
   app.get('/favicon.ico', (req, res) => {
-    res.sendFile("favicon.ico");
+    res.sendFile(path.join(__dirname, 'public', 'favicon.ico'));
   })
   app.use('/signup', require('./signup'))
   app.use('/signin', require('./signin'))

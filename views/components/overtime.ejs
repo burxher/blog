@@ -16,20 +16,39 @@
     <% } %>
     <p><span class="total-hours">本月累计加班时长为 </span><%= overtime.totalHours %><span> 小时</span></p>
   </div>
-  <form method="post" class="ui form segment" action="/995">
+  <div class="time-tab" id="time-tab" data-index="0" >
+    <div><span class="ui label tab-item" onclick="changeTab(0)">记录今天加班</span></div>
+    <div><span class="ui label tab-item" onclick="changeTab(1)">补录加班</span></div>
+  </div>
+  <div class="ui segment" id="setting-today">
     <div class="field required">
       <div class="ui labeled input">
-        <div class="ui label">开始加班</div>
-        <input type="text" placeholder="2019-08-22 18:30" name="starttime" value="<%= overtime.now %>">
+        <div class="ui label">开始</div>
+        <input type="text" id="startT" readonly onclick="datePickerShow('startT')" value="18:30">
+      </div>
+      <div class="ui labeled input">
+        <div class="ui label">结束</div>
+        <input type="text" id="endT" readonly onclick="datePickerShow('endT')" onload="setDefaultTime(this)">
       </div>
     </div>
-    <div class="field required">
-      <div class="ui labeled input field">
-        <div class="ui label">加班结束</div>
-        <input type="text" placeholder="2019-08-22 22:00" name="endtime" value="<%= overtime.now %>">
-      </div>
+  </div>
+
+  <form id="overtime-form" method="post" class="ui form segment" action="/995">
+    <div id="setting-other-time" style="display: none;">
+      <div class="field required">
+          <div class="ui labeled input">
+            <div class="ui label">开始加班</div>
+            <input type="text" placeholder="2019-08-22 18:30" name="starttime" value="<%= overtime.now %>">
+          </div>
+        </div>
+        <div class="field required">
+          <div class="ui labeled input field">
+            <div class="ui label">加班结束</div>
+            <input type="text" placeholder="2019-08-22 22:00" name="endtime" value="<%= overtime.now %>">
+          </div>
+        </div>
     </div>
-    <input type="submit" value="确定" class="ui button fluid">
+    <input type="button" value="确定" class="ui button fluid" onclick="formSubmit()">
   </form>
 </div>
 <% } %>

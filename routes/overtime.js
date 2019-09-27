@@ -17,6 +17,9 @@ router.post('/', (req, res, next) => {
     if(!regExp.test(endTime)) {
       throw new Error('加班结束时间格式错误')
     }
+    if(new Date(startTime) > new Date(endTime)) {
+      throw new Error('加班结束时间小于开始时间')
+    }
   } catch (e) {
     req.flash('error', e.message)
     return res.redirect('/posts')
