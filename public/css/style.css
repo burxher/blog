@@ -54,7 +54,7 @@ a:hover{
 
 .nav-setting .icon.bars {
   color: #000;
-  font-size: 1.6rem;
+  font-size: 3rem;
 }
 
 /* ---------- post-content ---------- */
@@ -86,13 +86,14 @@ a:hover{
 /* 加班时间组件 */
 .overtime {
   margin: 1rem auto;
-  width: 24rem;
+  width: 70rem;
   background-color: white;
   border: 1px solid #ccc;
   text-align: center;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
-  font-size: 1.4rem;
+  font-size: 4rem;
+  line-height: 4rem;
 }
 .overtime .title {
   color: #4fc08d;
@@ -112,8 +113,8 @@ a:hover{
 }
 
 .overtime .time-tab {
-  height: 2.8rem;
-  line-height: 2.8rem;
+  height: 5rem;
+  line-height: 5rem;
   margin-top: 1.0rem;
   padding-left: 2.0rem;
   font-size: 0;
@@ -124,21 +125,22 @@ a:hover{
 }
 .overtime .time-tab div {
   display: inline-block;
-  height: 2.8rem;
-  line-height: 2.8rem;
+  height: 5rem;
+  line-height: 5rem;
   cursor: pointer;
   text-align: center;
 }
 .overtime .time-tab span {
   display: inline-block;
-  line-height: 2.8rem;
-  height: 2.8rem;
-  width: 8.4rem;
+  line-height: 5rem;
+  height: 5rem;
+  width: 20rem;
   padding: 0;
-  font-size: 1rem;
+  font-size: 3rem;
 }
 .overtime .time-tab span:hover {
-  background: #d3d8d6
+  background: #d3d8d6;
+  border-bottom: 0.5rem solid #4fc98d
 }
 .overtime .time-tab :first-child span {
   background: #d3d8d6;
@@ -152,6 +154,7 @@ a:hover{
   border-bottom-right-radius: 0;
 }
 .overtime .ui.segment {
+  font-size: 3rem;
   margin-top: 0;
   margin-bottom: 0;
   padding-bottom: 0;
@@ -159,14 +162,14 @@ a:hover{
   box-shadow: 0 0 0 0 rgba(34,36,38,.15);
 }
 .overtime .ui.input {
-  font-size: 1rem;
+  font-size: 2.5rem;
   margin: 0 1rem;
 }
 .overtime .ui.input input {
   padding: 0.5rem;
 }
 .overtime .ui.labeled input {
-  width: 4.2rem;
+  width: 10rem;
 }
 .overtime .ui.labeled input {
   border-top-left-radius: 0;
@@ -179,4 +182,7 @@ a:hover{
 
 .overtime #setting-other-time {
   margin-bottom: 1rem;
+}
+.overtime .ui.button {
+  font-size: 3rem;
 }

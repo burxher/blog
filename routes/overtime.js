@@ -1,7 +1,26 @@
 const express = require('express')
 const router = express.Router()
 const OverTimeModel = require('../models/overtime')
+const overtimeFormat = require('../tools/overtimeFun').overtimeFormat
+const methods = require('../tools/methods')
+router.get('/', function (req, res, next) {
+  const user = req.session.user ? req.session.user._id : null
+  // 加班时间
+  OverTimeModel.getOverTimeList({
+    author: user,
+    // 当月第一天时间-现在
+    startDate: methods.dateToStr(new Date(), 'firstDate')
+  }).then(result => {
+    // 加班时间
+    let overtime = overtimeFormat(result)
+    console.log("加班时间：", overtime)
 
+    // 渲染
+    res.render('overtime', {
+      overtime: overtime
+    })
+  })
+})
 router.post('/', (req, res, next) => {
   let author = req.session.user._id
   let startTime = req.fields.starttime

@@ -6,8 +6,10 @@ function changeTab(index) {
   var tabArr = get_$('.tab-item')
   for(var i = 0; i < tabArr.length; i++) {
     tabArr[i].style.background = '#ebebeb'
+    tabArr[i].style.borderBottom = "none"
   }
   tabArr[index].style.background = '#d3d8d6'
+  tabArr[index].style.borderBottom = "0.5rem solid #4fc98d"
 
   // 记录当前 tab 索引
   var tabs = get_$('time-tab')
