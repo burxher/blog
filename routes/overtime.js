@@ -41,7 +41,7 @@ router.post('/', (req, res, next) => {
     }
   } catch (e) {
     req.flash('error', e.message)
-    return res.redirect('/posts')
+    return res.redirect('/995')
   }
   let overtime = {
     author: author,
@@ -51,7 +51,7 @@ router.post('/', (req, res, next) => {
   OverTimeModel.create(overtime)
     .then( () => {
       req.flash('success', '加班完成，你很棒哦！')
-      res.redirect('/posts')
+      res.redirect('/995')
     })
     .catch(next)
 })
