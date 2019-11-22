@@ -13,6 +13,15 @@
     <link rel="stylesheet" href="/css/mydatepicker.min.css">
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/semantic-ui/2.1.8/semantic.min.js"></script>
+    <script>
+      (function (n, e) {
+        var t = n.documentElement, i = "orientationchange" in window ? "orientationchange" : "resize", d = function () {
+            var n = t.clientWidth;
+            n && (t.style.fontSize = n / 75 + "px")
+        };
+        n.addEventListener && (e.addEventListener(i, d, !1), n.addEventListener("DOMContentLoaded", d, !1))
+      })(document, window);
+    </script>
   </head>
   <body>
     <%- include('components/nav') %>
