@@ -1,10 +1,10 @@
 /* 全局样式 */
 
 body {
-  width: 60rem;
   height: 100%;
   margin: 0 auto;
   padding-top: 4rem;
+  font-size: 1.4rem;
 }
 
 a:hover{
@@ -86,13 +86,13 @@ a:hover{
 /* 加班时间组件 */
 .overtime {
   margin: 1rem auto;
-  width: 29rem;
+  width: 24rem;
   background-color: white;
   border: 1px solid #ccc;
   text-align: center;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 .overtime .title {
   color: #4fc08d;
