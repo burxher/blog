@@ -6,11 +6,13 @@ const methods = require('../tools/methods')
 router.get('/', function (req, res, next) {
   const user = req.session.user ? req.session.user._id : null
   // 加班时间
-  OverTimeModel.getOverTimeList({
+  let params = {
     author: user,
     // 当月第一天时间-现在
     startDate: methods.dateToStr(new Date(), 'firstDate')
-  }).then(result => {
+  }
+  OverTimeModel.getOverTimeList(params)
+  .then(result => {
     // 加班时间
     let overtime = overtimeFormat(result)
     console.log("加班时间：", overtime)
@@ -20,6 +22,7 @@ router.get('/', function (req, res, next) {
       overtime: overtime
     })
   })
+  .catch(next)
 })
 router.post('/', (req, res, next) => {
   let author = req.session.user._id
@@ -49,11 +52,11 @@ router.post('/', (req, res, next) => {
     endTime: new Date(endTime)
   }
   OverTimeModel.create(overtime)
-    .then( () => {
-      req.flash('success', '加班完成，你很棒哦！')
-      res.redirect('/995')
-    })
-    .catch(next)
+  .then( () => {
+    req.flash('success', '加班完成，你很棒哦！')
+    res.redirect('/995')
+  })
+  .catch(next)
 })
 
 module.exports = router

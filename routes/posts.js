@@ -4,35 +4,19 @@ const router = express.Router()
 const checkLogin = require('../middleware/check').checkLogin
 const PostModel = require('../models/posts')
 const CommentModel = require('../models/comments')
-const OvertimeModel = require('../models/overtime')
-const methods = require('../tools/methods')
-const overtimeFormat = require('../tools/overtimeFun').overtimeFormat
 
 // 文章页
 router.get('/', function (req, res, next) {
   const author = req.query.author
-  const user = req.session.user ? req.session.user._id : null
-  Promise.all([
-    PostModel.getPosts(author),
-    // 加班时间
-    OvertimeModel.getOverTimeList({
-      author: user,
-      // 当月第一天时间-现在
-      startDate: methods.dateToStr(new Date(), 'firstDate')
-    })
-  ])
+
+  PostModel.getPosts(author)
   .then( result => {
     // 博文
-    const posts = result[0]
-
-    // 加班时间
-    let overtime = overtimeFormat(result[1])
-    console.log("加班时间：", overtime)
+    const posts = result
 
     // 渲染
     res.render('posts', {
-      posts: posts,
-      overtime: overtime
+      posts: posts
     })
   })
   .catch(next)
