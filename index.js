@@ -88,6 +88,7 @@ app.use(function (err, req, res, next) {
   console.log(err)
   req.flash('error', err.message)
   res.redirect('/posts')
+  next()
 })
 
 app.listen(config.port, function () {
